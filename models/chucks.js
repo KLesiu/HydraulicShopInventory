@@ -7,7 +7,9 @@ const ChucksSchema= new Schema({
     material : {type:String, maxLength: 100, required: true},
     price: {type: Number, required: true },
     size: {type: String, required:true},
-    r: {type:String, required:false, maxLength: 100}
+    r: {type:String, required:false, maxLength: 100},
+    availability: {type: Boolean,required:true},
+    quantity:{type:Number,required:true}
 })
 
 ChucksSchema.virtual("url").get(function(){

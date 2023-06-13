@@ -7,6 +7,8 @@ const PlugsSchema = new Schema({
     material : {type:String, maxLength: 100, required: true},
     price: {type: Number, required: true },
     size: {type: Number, required:true},
+    availability: {type: Boolean,required:true},
+    quantity:{type:Number,required:true}
 })
 
 PlugsSchema.virtual("url").get(function(){

@@ -6,7 +6,9 @@ const TeesSchema = new Schema({
     name: {type: String, maxLength: 100, required: true},
     material : {type:String, maxLength: 100, required: true},
     price: {type: Number, required: true },
-    size: {type: Number, required:true}
+    size: {type: String, required:true},
+    availability: {type: Boolean,required:true},
+    quantity:{type:Number,required:true}
 })
 
 

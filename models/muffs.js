@@ -7,6 +7,8 @@ const MuffsSchema = new Schema({
     type: {type:String, required:true, maxLength:100},
     material : {type:String, maxLength: 100, required: true},
     price: {type: Number, required: true },
+    availability: {type: Boolean,required:true},
+    quantity:{type:Number,required:true}
 })
 
 MuffsSchema.virtual("url").get(function(){
