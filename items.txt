@@ -1,0 +1,48 @@
+Trójniki:
+    - trójnik 16 PP 1.05zł
+    - trójnik 75 PP 29.75zł
+    - trójnik 63 pp 19.88zł
+    - trójnik 50 pp 10.50zł
+    - trójnik redukcyjny  75/32/75 pp 26.75zł
+    - trójnik redukcyjny 75/63/75 pp 29.75zł
+    - trójnik redukcyjny 25/16/25 pp 2.3zł
+    - trójnik redukcyjny 32/20/32 pp 2.68zł
+Uchwyty i obejmy:
+    - uchwyt-obejma 6 guma R 159-167 15.32zł
+    - uchqwyt-obejma podwójny 3/8 guma 6.9zł
+    - uchwyt-obejma podwójny 1/2 guma 7.4zł
+    - uchwyt-obejma 3/4 guma R 25-30 2.75zł
+    - uchwyt-obejma 2 guma R 59-63 M 8-10 5.51zł
+    - uchwyt-obejma 1 guma R 32-36 3.09zł
+Zaślepki:
+    - zaślepka 90 PP 37.62zł
+    - zaślepka 75 PP 17.74zł
+    - zaślepka 63 PP 13.57zł
+    - zaślepka 40 PP 4.46zł
+    - zaślepka 16 PP 1.11zl
+Kolanka:
+    - kolano nyplowe 45* fi 40mm PP 15.61zł
+    - kolano nyplowe 90* fi 40mm PP 11.54zł
+    - kolano 45* fi 75mm PP 30.57zł
+    - kolano 45* fi 90mm PP 57.35zł
+    - kolano wieszak GW fi 20-1/2 PP 6.67zł
+    - kolano GZ fi 25-3/4 PP 11.75zł
+    - kolano GZ fi 16-1/2 PP 8.15zł
+    - kolano GW fi 32-1 PP 23.30zł
+    - kolano GW fi 16-1/2 PP 6.54zł
+    - kolano 90* fi 20mm PP 0.79zł
+Mufy:
+    - mufa GZ 40-1" PP 46.1zł
+    - mufa GW 40-1" PP 44.04zł
+    - mufa GZ 25-1" PP 24.14zł
+    - mufa 90 PP 33.37zł
+    - mufa 40 PP 2.64zł
+    - mufa RED. 75/50 PP 11.28zł
+Śrubunki:
+    - śrubunek FV GW 50-1, 1/2" mufowy PP 141.95zł
+    - śrubunek FV GZ 40-1, 1/4" mufowy PP 109.76zł
+    - śrubunek PP 25x3/4 GZ 36.32zł
+    - śrubunek PP 25 Holender 48zł
+    - śrubunek PP 20 Holender 29.05zł
+    - półśrubunek GW 20x3/4 PP 14.03zł
+
