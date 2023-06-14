@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('style_connects') %>
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('layout') %>
+    <div class="container">
+        <h2><%= title %></h2>
+        <% if(chuck_list){
+            %>  
+            <ul>
+                <% for(chuck of chuck_list){
+                    %> 
+                    <% if(chuck.availability === true){
+                        %> <li style="background-color: rgb(81, 182, 22)"><a href="<%= chuck.url %>"><%= chuck.name %></a></li> <%
+                    }else{
+                        %><li style="background-color: rgb(197, 11, 11)"><a href="<%= chuck.url %>"><%= chuck.name %></a></li> <%
+                    } %>
+                    <ul>
+                        
+                        <li><strong>Size:</strong> <%= chuck.size  %></li>
+                        
+                    </ul>
+                    <%
+                } %>
+            </ul>
+            
+            <%
+        } 
+        else{
+            %>
+            List doesnt have any product
+            <%
+        }
+        
+        %>
+    </div>
+</body>
+</html>
