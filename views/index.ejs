@@ -3,9 +3,23 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <%- include('layout') %>
+    <div class="container">
+     <h2>Number of available product types:</h2>
+      <ul>
+        <li><strong>Chucks</strong>: <%= chucks_count %></li>
+        <li><strong>Muffs</strong>: <%= muffs_count %></li>
+        <li><strong>Nodes</strong>: <%= nodes_count %></li>
+        <li><strong>Plugs</strong>: <%= plugs_count %></li>
+        <li><strong>Screws</strong>: <%= screws_count %></li>
+        <li><strong>Tees</strong>: <%= tees_count %></li>
+      </ul>
+    </div>
+    
   </body>
 </html>

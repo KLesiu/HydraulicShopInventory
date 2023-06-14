@@ -1,8 +1,52 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  background: rgb(40,132,205);
+  background: linear-gradient(0deg, rgba(40,132,205,1) 0%, rgba(15,182,217,1) 100%);
 
-a {
-  color: #00B7FF;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: 'Titillium Web', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 50px;
+  width: 100vw;
+  
+}
+h1{
+  font-size: 40px;
+  text-align: center;
+  width: 100%;
+}
+nav{
+  border-top: 5px solid silver;
+  border-right: 5px solid silver;
+  border-radius: 5px;
+  font-size: 22px;
+  min-height: 72vh;
+  margin-top: 2%;
+  width: 20%;
+}
+ul{
+  list-style-type: none;
+}
+ul>li{
+  cursor: pointer;
+  margin-top: 2%;
+  
+  width: 100%;
+}
+ul>li:hover{
+  background-color: rgb(26, 182, 202);
+  font-size: 25px;
+
+ 
+}
+.container{
+  border-top: 5px solid silver;
+  border-radius: 5px;
+  font-size: 22px;
+  margin-top: 2%;
+  padding-left: 10px;
+
+  width: 75%;
 }
