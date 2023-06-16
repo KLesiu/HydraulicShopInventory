@@ -18,6 +18,13 @@ router.get("/", products_controller.index)
 // Get request for list of all Chuck items
 router.get("/chucks",chuck_controller.chucks_list)
 
+// Get request for creating a Chuck
+router.get('/chucks/create',chuck_controller.chuck_create_get)
+
+// Post request for creating a Chuck
+router.post('/chucks/create',chuck_controller.chuck_create_post)
+
+
 // Get request for one Chuck
 router.get("/chucks/:id", chuck_controller.chuck_detail)
 
