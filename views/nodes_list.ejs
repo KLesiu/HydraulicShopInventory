@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('style_connects') %>
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('layout') %>
+    <div class="container">
+        <h2><%= title %></h2>
+        <% if(node_list){
+            %>  
+            <ul>
+                <% for(node of node_list){
+                    %> 
+                    <% if(node.availability === true){
+                        %> <li style="background-color: rgb(81, 182, 22)"><a href="<%= node.url %>"><%= node.name %></a></li> <%
+                    }else{
+                        %><li style="background-color: rgb(197, 11, 11)"><a href="<%= node.url %>"><%= node.name %></a></li> <%
+                    } %>
+                    <ul>
+                        
+                        <li><strong>Type:</strong> <%= node.type  %></li>
+                        
+                    </ul>
+                    <%
+                } %>
+            </ul>
+            
+            <%
+        } 
+        else{
+            %>
+            List doesnt have any product
+            <%
+        }
+        
+        %>
+    </div>
+</body>
+</html>
