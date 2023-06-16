@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('style_connects') %>
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('layout') %>
+    <div class="container">
+        <h2><%= title %></h2>
+        <% if(plug_list){
+            %>  
+            <ul>
+                <% for(plug of plug_list){
+                    %> 
+                    <% if(plug.availability === true){
+                        %> <li style="background-color: rgb(81, 182, 22)"><a href="<%= plug.url %>"><%= plug.name %></a></li> <%
+                    }else{
+                        %><li style="background-color: rgb(197, 11, 11)"><a href="<%= plug.url %>"><%= plug.name %></a></li> <%
+                    } %>
+                    <ul>
+                        
+                        <li><strong>Size:</strong> <%= plug.size  %></li>
+                        
+                    </ul>
+                    <%
+                } %>
+            </ul>
+            
+            <%
+        } 
+        else{
+            %>
+            List doesnt have any product
+            <%
+        }
+        
+        %>
+    </div>
+</body>
+</html>
