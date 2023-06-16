@@ -8,7 +8,7 @@ const muff_controller = require('../controllers/muff')
 const node_controller = require('../controllers/node')
 const plug_controller = require('../controllers/plug')
 const screw_controller = require('../controllers/screw')
-const screws = require("../models/screws")
+const tee_controller = require('../controllers/tee')
 // Get catalog home page
 router.get("/", products_controller.index)
 
@@ -54,4 +54,13 @@ router.get('/screws',screw_controller.screws_list)
 
 // Get request for one Screw
 router.get('/screws/:id',screw_controller.screw_detail)
+
+
+// Tees
+
+// Get request for list of all Tees item
+router.get('/tees',tee_controller.tees_list)
+
+// Get request for one Tee
+router.get('/tees/:id',tee_controller.tee_detail)
 module.exports = router
