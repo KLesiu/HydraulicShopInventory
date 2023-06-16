@@ -44,6 +44,7 @@ exports.chuck_create_get= (req,res,next)=>{
     body("name","Name must not be empty").trim().isLength({min:1}).escape(),
     body("material","Material must not be empty").trim().isLength({min:1}).escape(),
     body("price","Price must not be empty, must be a number").isFloat(),
+    body("size","Size must not be empty").notEmpty(),
     body("r","R must not be empty").trim().isLength({min:1}).escape(),
     body("quantity","Quantity must not be empty, must be a number").isInt(),
     asyncHandler(async(req,res,next)=>{

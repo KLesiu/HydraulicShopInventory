@@ -27,9 +27,10 @@
             <button type="submit">ADD</button>
         </form>
     <% if(errors){
-        %> 
-        <ul>
-            
+        %>
+        
+        <ul class="errors">
+              
             <% for(error in errors){
                 %> 
                 <li><%= (errors[error].msg) %></li>
