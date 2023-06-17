@@ -99,7 +99,7 @@ form button:hover{
 }
 .addNew{
   background-color: green;
-  border: 2px solid black;
+  border: 1px solid black;
   cursor: pointer;
   border-radius: 10px;
   height: 40px;
@@ -122,4 +122,26 @@ form button:hover{
 }
 #home:hover{
   color: red;
+}
+.infoDelete{
+  margin-left: 3%;
+  width: 70%;
+}
+
+.deleteItem,.deleteButton{
+  background-color: rgb(235, 103, 103);
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-left: 3%;
+  width: 5%;
+}
+.deleteItem:hover,.deleteButton:hover{
+  background-color: rgb(207, 48, 48);
+}
+.deleteButton{
+  width: 20%;
 }

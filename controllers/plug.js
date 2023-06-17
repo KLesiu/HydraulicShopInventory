@@ -28,7 +28,8 @@ exports.plug_detail = asyncHandler(async (req,res,next)=>{
         price: plug.price,
         size: plug.size,
         availability: plug.availability,
-        quantity: plug.quantity
+        quantity: plug.quantity,
+        url: plug.url
 
     })
 })
@@ -72,3 +73,23 @@ exports.plug_create_post=[
         }
     })
 ]
+
+
+// Delete Plug GET
+exports.plug_delete_get= asyncHandler(async(req,res,next)=>{
+    const plug = await Plug.findById(req.params.id).exec()
+    if(plug === null){
+        // No results
+        res.redirect("/catalog/plugs")
+    }
+    res.render("plug_delete",{
+        title: "Delete Plug",
+        plug: plug
+    })
+})
+
+// Handle Plug on POST
+exports.plug_delete_post = asyncHandler(async(req,res,next)=>{
+    await Plug.findByIdAndRemove(req.body.id)
+    res.redirect("/catalog/plugs")
+})

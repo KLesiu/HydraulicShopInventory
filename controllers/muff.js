@@ -28,7 +28,8 @@ exports.muff_detail = asyncHandler(async (req,res,next)=>{
         material: muff.material,
         price: muff.price,
         availability: muff.availability,
-        quantity: muff.quantity
+        quantity: muff.quantity,
+        url: muff.url
 
     })
 })
@@ -57,7 +58,8 @@ exports.muff_create_post = [
             material: req.body.material,
             price: req.body.price,
             availability: avail,
-            quantity: req.body.quantity
+            quantity: req.body.quantity,
+            
         })
         if(!errors.isEmpty()){
             res.render("muff_form",{
@@ -72,3 +74,23 @@ exports.muff_create_post = [
     })
 
 ]
+
+
+// Delete Muff GET
+exports.muff_delete_get=asyncHandler(async(req,res,next)=>{
+    const muff = await Muff.findById(req.params.id).exec()
+    if(muff === null){
+        // No results
+        res.redirect("/catalog/muffs")
+    }
+    res.render("muff_delete",{
+        title: "Delete Muff",
+        muff: muff
+    })
+})
+
+// Handle Muff on POST
+exports.muff_delete_post=asyncHandler(async(req,res,next)=>{
+    await Muff.findByIdAndRemove(req.body.id)
+    res.redirect("/catalog/muffs")
+})

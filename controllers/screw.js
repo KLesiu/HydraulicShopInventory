@@ -29,7 +29,8 @@ exports.screw_detail = asyncHandler(async (req,res,next)=>{
         price: screw.price,
         size: screw.size,
         availability: screw.availability,
-        quantity: screw.quantity
+        quantity: screw.quantity,
+        url : screw.url
 
     })
 })
@@ -76,3 +77,22 @@ exports.screw_create_post=[
     })
 
 ]
+
+// Delete Screw GET
+exports.screw_delete_get = asyncHandler(async(req,res,next)=>{
+    const screw = await Screw.findById(req.params.id).exec()
+    if(screw===null){
+        // No results
+        res.redirect("/catalog/screws")
+    }
+    res.render("screw_delete",{
+        title: "Delete Screw",
+        screw: screw
+    })
+})
+
+// Handle Screw on POST
+exports.screw_delete_post = asyncHandler(async(req,res,next)=>{
+    await Screw.findByIdAndRemove(req.body.id)
+    res.redirect("/catalog/screws")
+})

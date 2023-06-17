@@ -28,7 +28,8 @@ exports.tee_detail = asyncHandler(async (req,res,next)=>{
         price: tee.price,
         size: tee.size,
         availability: tee.availability,
-        quantity: tee.quantity
+        quantity: tee.quantity,
+        url: tee.url
     })
 })
 
@@ -71,3 +72,22 @@ exports.tee_create_post=[
     })
 
 ]
+
+// Delete Tee GET
+exports.tee_delete_get= asyncHandler(async(req,res,next)=>{
+    const tee = await Tee.findById(req.params.id).exec()
+    if(tee===null){
+        // No results
+        res.redirect("/catalog/tees")
+    }
+    res.render("tee_delete",{
+        title: "Delete Tee",
+        tee: tee
+    })
+})
+
+// Handle Tee on POST
+exports.tee_delete_post=asyncHandler(async(req,res,next)=>{
+    await Tee.findByIdAndRemove(req.body.id)
+    res.redirect("/catalog/tees")
+})

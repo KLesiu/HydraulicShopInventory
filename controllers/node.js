@@ -29,7 +29,8 @@ exports.node_detail = asyncHandler(async (req,res,next)=>{
         price: node.price,
         fi: node.fi,
         availability: node.availability,
-        quantity: node.quantity
+        quantity: node.quantity,
+        url: node.url
 
     })
 })
@@ -75,3 +76,22 @@ exports.node_create_post = [
     })
 
 ]
+
+// Delete Node GET
+exports.node_delete_get = asyncHandler(async(req,res,next)=>{
+    const node = await Node.findById(req.params.id).exec()
+    if(node===null){
+        // No results
+        res.redirect("/catalog/nodes")
+    }
+    res.render("node_delete",{
+        title: "Delete Node",
+        node: node
+    })
+})
+
+// Handle Node on POST
+exports.node_delete_post = asyncHandler(async(req,res,next)=>{
+    await Node.findByIdAndRemove(req.body.id)
+    res.redirect("/catalog/nodes")
+})

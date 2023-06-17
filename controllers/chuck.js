@@ -30,7 +30,8 @@ exports.chuck_detail = asyncHandler(async (req,res,next)=>{
     size: chuck.size,
     r: chuck.r,
     availability: chuck.availability,
-    quantity: chuck.quantity
+    quantity: chuck.quantity,
+    url: chuck.url
    })
 })
 
@@ -76,3 +77,24 @@ exports.chuck_create_get= (req,res,next)=>{
         
     })
  ]
+
+
+ // Delete Chuck GET
+ exports.chuck_delete_get=asyncHandler(async(req,res,next)=>{
+    const chuck = await Chuck.findById(req.params.id).exec()
+    if(chuck === null){
+        // No results
+        res.redirect("/catalog/chucks")
+    }
+    res.render("chuck_delete",{
+        title: "Delete Chuck",
+        chuck: chuck
+    })
+ })
+
+
+// Handle Chuck on POST
+exports.chuck_delete_post= asyncHandler(async(req,res,next)=>{
+    await Chuck.findByIdAndRemove(req.body.id)
+    res.redirect("/catalog/chucks")
+})
