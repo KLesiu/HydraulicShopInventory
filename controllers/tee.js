@@ -1,3 +1,4 @@
+const {body, validationResult} =require('express-validator')
 const Tee = require('../models/tees')
 const asyncHandler = require('express-async-handler')
 
@@ -30,3 +31,43 @@ exports.tee_detail = asyncHandler(async (req,res,next)=>{
         quantity: tee.quantity
     })
 })
+
+// Display Tee create form on GET
+exports.tee_create_get= (req,res,next)=>{
+    res.render("tee_form",{title: "Create Tee", errors:{}})
+}
+
+// Process request after validation and sanitization
+exports.tee_create_post=[
+    body("name","Name must not be empty").trim().isLength({min:1}).escape(),
+    body("material","Material must not be empty").trim().isLength({min:1}).escape(),
+    body("price","Price must not be empty, must be a number").isFloat(),
+    body("size","Size must not be empty").trim().isLength({min:1}).escape(),
+    body("quantity","Quantity must not be empty").isInt(),
+    asyncHandler(async(req,res,next)=>{
+        const errors = validationResult(req)
+        let avail = false
+        if(req.body.quantity>0){
+            avail=true
+        }
+        const tee = new Tee({
+            name: req.body.name,
+            material: req.body.material,
+            price: req.body.price,
+            size: req.body.size,
+            availability:avail,
+            quantity:req.body.quantity
+        })
+        if(!errors.isEmpty()){
+            res.render("tee_form",{
+                title: "Create Tee",
+                errors: errors.array()
+            })
+            return
+        }else{
+            await tee.save()
+            res.redirect(tee.url)
+        }
+    })
+
+]

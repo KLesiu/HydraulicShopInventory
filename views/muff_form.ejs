@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('style_connects') %>
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('layout') %>
+    <div class="container">
+        <form action="" method="POST">
+            <h1>FORM</h1>
+            <label for="name">Name:</label>
+            <input placeholder="Mufa" name="name" type="text" >
+            <label for="type">Type:</label>
+            <input placeholder="GZ 25-1" type="text" name="type">
+            <label for="material">Material:</label>
+            <input placeholder="PP" type="text" name="material">
+            <label for="price">Price:</label>
+            <input placeholder="24.14" type="float" name="price">
+            <label for="quantity">Quantity:</label>
+            <input placeholder="72" type="number" name="quantity">
+            <button type="submit">ADD</button>
+        </form>
+    <% if(errors){
+        %>
+        
+        <ul class="errors">
+              
+            <% for(error in errors){
+                %> 
+                <li><%= (errors[error].msg) %></li>
+                
+                <%
+            } %>
+        </ul>
+        <%
+    } %>
+    </div>
+    
+</body>
+</html>

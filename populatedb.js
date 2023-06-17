@@ -148,8 +148,8 @@ async function createChucks(){
 async function createMuffs(){
     console.log("Adding muffs")
     await Promise.all([
-        muffCreate("Mufa","GZ 40-1'","PP",46,true,98),
-        muffCreate("Mufa","GW 40-1'","PP",44,false,0)
+        muffCreate("Mufa","GZ 40-1","PP",46,true,98),
+        muffCreate("Mufa","GW 40-1","PP",44,false,0)
     ])
 }
 async function createNodes(){

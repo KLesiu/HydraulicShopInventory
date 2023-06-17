@@ -35,6 +35,12 @@ router.get("/chucks/:id", chuck_controller.chuck_detail)
 // Get request for list of all Muff items
 router.get('/muffs', muff_controller.muffs_list)
 
+// Get request for creating a Muff
+router.get('/muffs/create',muff_controller.muff_create_get)
+
+// Post request for creating a Muff
+router.post('/muffs/create',muff_controller.muff_create_post)
+
 // Get request for one Muff
 router.get("/muffs/:id",muff_controller.muff_detail)
 
@@ -42,6 +48,12 @@ router.get("/muffs/:id",muff_controller.muff_detail)
 
 // Get request for list of all Node items
 router.get('/nodes',node_controller.nodes_list)
+
+// Get request for creating a Node
+router.get('/nodes/create',node_controller.node_create_get)
+
+// Post request for creating a Node
+router.post('/nodes/create',node_controller.node_create_post)
 
 // Get request for one Node
 router.get('/nodes/:id',node_controller.node_detail)
@@ -51,6 +63,12 @@ router.get('/nodes/:id',node_controller.node_detail)
 // Get request for list of all Plugs items
 router.get('/plugs',plug_controller.plugs_list)
 
+// Get request for creating a Plug
+router.get('/plugs/create',plug_controller.plug_create_get)
+
+// Post request for creating a Plug
+router.post('/plugs/create',plug_controller.plug_create_post)
+
 // Get request for one Plug
 router.get('/plugs/:id',plug_controller.plug_detail)
 
@@ -58,6 +76,12 @@ router.get('/plugs/:id',plug_controller.plug_detail)
 
 // Get request for list of all Screws item
 router.get('/screws',screw_controller.screws_list)
+
+// Get request for creating a Screw
+router.get('/screws/create',screw_controller.screw_create_get)
+
+// Post request for creating a Screw
+router.post('/screws/create',screw_controller.screw_create_post)
 
 // Get request for one Screw
 router.get('/screws/:id',screw_controller.screw_detail)
@@ -68,6 +92,15 @@ router.get('/screws/:id',screw_controller.screw_detail)
 // Get request for list of all Tees item
 router.get('/tees',tee_controller.tees_list)
 
+// Get request for creating a Tee
+router.get("/tees/create",tee_controller.tee_create_get)
+
+// Post request for creating a Tee
+router.post('/tees/create',tee_controller.tee_create_post)
+
 // Get request for one Tee
 router.get('/tees/:id',tee_controller.tee_detail)
+
+
+
 module.exports = router

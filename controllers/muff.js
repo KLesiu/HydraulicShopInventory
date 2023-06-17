@@ -1,4 +1,5 @@
 const Muff = require("../models/muffs")
+const {body, validationResult} =require('express-validator')
 const asyncHandler =  require("express-async-handler")
 
 //Display list of all Chucks
@@ -31,3 +32,43 @@ exports.muff_detail = asyncHandler(async (req,res,next)=>{
 
     })
 })
+
+// Display Muff create form on GET
+exports.muff_create_get=(req,res,next)=>{
+    res.render("muff_form",{title: "Create Muff", errors: {}})
+}
+
+// Process request after validation and sanitization
+exports.muff_create_post = [
+    body("name","Name must not be empty").trim().isLength({min:1}).escape(),
+    body("type","Type must not be empty").trim().isLength({min:1}).escape(),
+    body("material","Material must not be empty").trim().isLength({min:1}).escape(),
+    body("price","Price must not be empty, must be a number").isFloat(),
+    body("quantity","Quantity must not be empty, must be a number").isInt(),
+    asyncHandler(async(req,res,next)=>{
+        const errors = validationResult(req)
+        let avail = false
+        if(req.body.quantity>0){
+            avail = true
+        }
+        const muff = new Muff({
+            name: req.body.name,
+            type: req.body.type,
+            material: req.body.material,
+            price: req.body.price,
+            availability: avail,
+            quantity: req.body.quantity
+        })
+        if(!errors.isEmpty()){
+            res.render("muff_form",{
+                title: "Create Muff",
+                errors: errors.array()
+            })
+            return
+        }else{
+            await muff.save()
+            res.redirect(muff.url)
+        }
+    })
+
+]
