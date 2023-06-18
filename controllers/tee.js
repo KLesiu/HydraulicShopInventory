@@ -35,7 +35,7 @@ exports.tee_detail = asyncHandler(async (req,res,next)=>{
 
 // Display Tee create form on GET
 exports.tee_create_get= (req,res,next)=>{
-    res.render("tee_form",{title: "Create Tee", errors:{}})
+    res.render("tee_form",{title: "Create Tee", errors:{},update:false})
 }
 
 // Process request after validation and sanitization
@@ -91,3 +91,58 @@ exports.tee_delete_post=asyncHandler(async(req,res,next)=>{
     await Tee.findByIdAndRemove(req.body.id)
     res.redirect("/catalog/tees")
 })
+
+
+// Display Tee update form on GET
+exports.tee_update_get = asyncHandler(async(req,res,next)=>{
+    const tee = await Tee.findById(req.params.id).exec()
+    if(tee===null){
+        // No results
+        const err = new Error("Tee not found")
+        err.status = 404
+        return next(err)
+    }
+    res.render("tee_form",{
+        title: "Update Tee",
+        tee : tee,
+        errors: {},
+        update: true
+    })
+})
+
+// Handle Tee update on POST
+exports.tee_update_post = [
+    body("name","Name must not be empty").trim().isLength({min:1}).escape(),
+    body("material","Material must not be empty").trim().isLength({min:1}).escape(),
+    body("price","Price must not be empty, must be a number").isFloat(),
+    body("size","Size must not be empty").trim().isLength({min:1}).escape(),
+    body("quantity","Quantity must not be empty").isInt(),
+    asyncHandler(async(req,res,next)=>{
+        const errors = validationResult(req)
+        let avail = false
+        if(req.body.quantity>0){
+            avail=true
+        }
+        const tee = new Tee({
+            name: req.body.name,
+            material: req.body.material,
+            price: req.body.price,
+            size: req.body.size,
+            availability:avail,
+            quantity:req.body.quantity ,
+            _id: req.params.id 
+        })
+        if(!errors.isEmpty()){
+            res.render("tee_form",{
+                title: "Update Tee",
+                tee: tee,
+                errors: errors.array(),
+                update: true
+            })
+            return
+        }else{
+            await Tee.findByIdAndUpdate(req.params.id,tee)
+            res.redirect(tee.url)
+        }
+    })
+]

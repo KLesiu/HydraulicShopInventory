@@ -37,7 +37,7 @@ exports.screw_detail = asyncHandler(async (req,res,next)=>{
 
 // Display Screw create form on GET
 exports.screw_create_get=(req,res,next)=>{
-    res.render("screw_form",{title: "Create Screw",errors:{}})
+    res.render("screw_form",{title: "Create Screw",errors:{},update:false})
 }
 
 // Process request after validation and sanitization
@@ -96,3 +96,59 @@ exports.screw_delete_post = asyncHandler(async(req,res,next)=>{
     await Screw.findByIdAndRemove(req.body.id)
     res.redirect("/catalog/screws")
 })
+
+// Display Plug update form on GET
+exports.screw_update_get = asyncHandler(async(req,res,next)=>{
+    const screw = await Screw.findById(req.params.id).exec()
+    if(screw===null){
+        // No results
+        const err = new Error("Screw not found")
+        err.status = 404
+        return next(err)
+    }
+    res.render("screw_form",{
+        title: "Update Screw",
+        screw: screw,
+        errors: {},
+        update: true
+    })
+})
+
+// Handle Screw update on POST
+exports.screw_update_post = [
+    body("name","Name must not be empty").trim().isLength({min:1}).escape(),
+    body("type","Type must not be empty").trim().isLength({min:1}).escape(),
+    body("material","Material must not be empty").trim().isLength({min:1}).escape(),
+    body("price","Price must not be empty, must be a number").isFloat(),
+    body("size","Size must not be empty").trim().isLength({min:1}).trim(),
+    body("quantity","Quantity must not be empty, must be a number").isInt(),
+    asyncHandler(async(req,res,next)=>{
+        const errors = validationResult(req)
+        let avail = false
+        if(req.body.quantity>0){
+            avail = true
+        }
+        const screw = new Screw({
+            name:req.body.name,
+            type:req.body.type,
+            material: req.body.material,
+            price: req.body.price,
+            size: req.body.size,
+            availability: avail,
+            quantity: req.body.quantity,
+            _id : req.params.id
+        })
+        if(!errors.isEmpty()){
+            res.render("screw_form",{
+                title: "Update Screw",
+                screw: screw,
+                errors: errors.array(),
+                update: true
+            })
+            return
+        }else{
+            await Screw.findByIdAndUpdate(req.params.id,screw)
+            res.redirect(screw.url)
+        }
+    })
+]

@@ -137,6 +137,12 @@ router.get("/screws/:id/delete",screw_controller.screw_delete_get)
 // Post request to delete Screw
 router.post("/screws/:id/delete",screw_controller.screw_delete_post)
 
+// Get request to update Screw
+router.get("/screws/:id/update",screw_controller.screw_update_get)
+
+// Post request to update Screw
+router.post("/screws/:id/update",screw_controller.screw_update_post)
+
 // Get request for one Screw
 router.get('/screws/:id',screw_controller.screw_detail)
 
@@ -157,6 +163,12 @@ router.get("/tees/:id/delete",tee_controller.tee_delete_get)
 
 // Post request to delete Tee
 router.get("/tees/:id/delete",tee_controller.tee_delete_post)
+
+// Get request to update Tee
+router.get("/tees/:id/update",tee_controller.tee_update_get)
+
+// Post request to update Tee
+router.post("/tees/:id/update",tee_controller.tee_update_post)
 
 // Get request for one Tee
 router.get('/tees/:id',tee_controller.tee_detail)
