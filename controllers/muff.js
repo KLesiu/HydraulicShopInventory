@@ -36,7 +36,7 @@ exports.muff_detail = asyncHandler(async (req,res,next)=>{
 
 // Display Muff create form on GET
 exports.muff_create_get=(req,res,next)=>{
-    res.render("muff_form",{title: "Create Muff", errors: {}})
+    res.render("muff_form",{title: "Create Muff", errors: {},update:false})
 }
 
 // Process request after validation and sanitization
@@ -59,6 +59,7 @@ exports.muff_create_post = [
             price: req.body.price,
             availability: avail,
             quantity: req.body.quantity,
+
             
         })
         if(!errors.isEmpty()){
@@ -94,3 +95,57 @@ exports.muff_delete_post=asyncHandler(async(req,res,next)=>{
     await Muff.findByIdAndRemove(req.body.id)
     res.redirect("/catalog/muffs")
 })
+
+// Display Muff update form on GET
+exports.muff_update_get = asyncHandler(async(req,res,next)=>{
+    const muff = await Muff.findById(req.params.id).exec()
+    if (muff === null){
+        // No results
+        const err = new Error('Muff not found')
+        err.status = 404
+        return next(err)
+    }
+    res.render("muff_form",{
+        title: "Update Muff",
+        muff : muff,
+        errors: {},
+        update: true
+    })
+})
+
+// Handle Muff update on POST
+exports.muff_update_post=[
+    body("name","Name must not be empty").trim().isLength({min:1}).escape(),
+    body("type","Type must not be empty").trim().isLength({min:1}).escape(),
+    body("material","Material must not be empty").trim().isLength({min:1}).escape(),
+    body("price","Price must not be empty, must be a number").isFloat(),
+    body("quantity","Quantity must not be empty, must be a number").isInt(), 
+    asyncHandler(async(req,res,next)=>{
+        const errors = validationResult(req)
+        let avail = false
+        if(req.body.quantity>0){
+            avail = true
+        }
+        const muff = new Muff({
+            name: req.body.name,
+            type: req.body.type,
+            material: req.body.material,
+            price: req.body.price,
+            availability: avail,
+            quantity: req.body.quantity,
+            _id : req.params.id
+        })
+        if(!errors.isEmpty()){
+            res.render("muff_form",{
+                title: "Update Muff",
+                muff: muff,
+                errors: errors.array(),
+                update: true
+            })
+            return
+        }else{
+            await Muff.findByIdAndUpdate(req.params.id,muff)
+            res.redirect(muff.url)
+        }
+    })
+]

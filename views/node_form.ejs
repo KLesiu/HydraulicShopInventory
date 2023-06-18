@@ -12,18 +12,20 @@
         <form action="" method="POST">
             <h1>FORM</h1>
             <label for="name">Name:</label>
-            <input placeholder="Kolanko" name="name" type="text" >
+            <input placeholder="Kolanko" name="name" type="text" value="<% if(update){%> <%= node.name %> <%} %>" >
             <label for="type">Type:</label>
-            <input placeholder="45*" type="text" name="type">
+            <input placeholder="45*" type="text" name="type" value="<% if(update){%> <%= node.type %>  <%} %>">
             <label for="material">Material:</label>
-            <input placeholder="PP" type="text" name="material">
-            <label for="price">Price:</label>
-            <input placeholder="30.57" type="float" name="price">
+            <input placeholder="PP" type="text" name="material" value="<% if(update){%> <%= node.material %> <%} %>">
+            <label for="price">Price: <% if(update&&node.price){%> (Current: <%if(node.price) %>   <%= node.price %>) <%} %></label>
+            <input placeholder="30.57"type="number" step="0.01" name="price">
             <label for="fi">Fi:</label>
-            <input name="fi" type="text" placeholder="75">
-            <label for="quantity">Quantity:</label>
+            <input name="fi" type="text" placeholder="75" value="<% if(update){
+                %> <%= node.fi %> <%
+            } %>">
+            <label for="quantity">Quantity: <% if(update&&node.quantity){%> (Current: <%= node.quantity %>) <%}%></label>
             <input placeholder="72" type="number" name="quantity">
-            <button type="submit">ADD</button>
+            <button type="submit"><% if(update){%> UPDATE <%} else{%>ADD<% } %></button>
         </form>
     <% if(errors){
         %>

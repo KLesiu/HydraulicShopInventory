@@ -59,6 +59,12 @@ router.get("/muffs/:id/delete",muff_controller.muff_delete_get)
 // Post request to delete Muff
 router.post("/muffs/:id/delete",muff_controller.muff_delete_post)
 
+// Get request to update Muff
+router.get("/muffs/:id/update",muff_controller.muff_update_get)
+
+// Post request to update Muff
+router.post("/muffs/:id/update",muff_controller.muff_update_post)
+
 // Get request for one Muff
 router.get("/muffs/:id",muff_controller.muff_detail)
 
@@ -79,6 +85,12 @@ router.get("/nodes/:id/delete",node_controller.node_delete_get)
 // Post request to delete Node
 router.post("/nodes/:id/delete",node_controller.node_delete_post)
 
+// Get request to update Node
+router.get("/nodes/:id/update",node_controller.node_update_get)
+
+// Post request to update Node
+router.post("/nodes/:id/update",node_controller.node_update_post)
+
 // Get request for one Node
 router.get('/nodes/:id',node_controller.node_detail)
 
@@ -98,6 +110,12 @@ router.get('/plugs/:id/delete',plug_controller.plug_delete_get)
 
 // Post request to delete Plug
 router.post("/plugs/:id/delete",plug_controller.plug_delete_post)
+
+// Get request to update Plug
+router.get("/plugs/:id/update",plug_controller.plug_update_get)
+
+// Post request to update Plug
+router.post("/plugs/:id/update",plug_controller.plug_update_post)
 
 // Get request for one Plug
 router.get('/plugs/:id',plug_controller.plug_detail)

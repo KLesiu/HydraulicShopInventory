@@ -12,16 +12,16 @@
         <form action="" method="POST">
             <h1>FORM</h1>
             <label for="name">Name:</label>
-            <input placeholder="Mufa" name="name" type="text" >
+            <input placeholder="Mufa" name="name" type="text" value="<% if(update){%> <%= muff.name %> <%} %>" >
             <label for="type">Type:</label>
-            <input placeholder="GZ 25-1" type="text" name="type">
+            <input placeholder="GZ 25-1" type="text" name="type" value="<% if(update){%> <%= muff.type %>  <%} %>">
             <label for="material">Material:</label>
-            <input placeholder="PP" type="text" name="material">
-            <label for="price">Price:</label>
-            <input placeholder="24.14" type="float" name="price">
-            <label for="quantity">Quantity:</label>
+            <input placeholder="PP" type="text" name="material" value="<% if(update){%> <%= muff.material %> <%} %>" >
+            <label for="price">Price: <% if(update&&muff.price){%> (Current: <%if(muff.price) %>   <%= muff.price %>) <%} %></label>
+            <input placeholder="24.14" type="number" step="0.01" name="price">
+            <label for="quantity">Quantity: <% if(update&&muff.quantity){%> (Current: <%= muff.quantity %>) <%}%></label>
             <input placeholder="72" type="number" name="quantity">
-            <button type="submit">ADD</button>
+            <button type="submit"><% if(update){%> UPDATE <%} else{%>ADD<% } %></button>
         </form>
     <% if(errors){
         %>

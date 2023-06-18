@@ -37,7 +37,7 @@ exports.plug_detail = asyncHandler(async (req,res,next)=>{
 
 // Display Plug create form on GET
 exports.plug_create_get=(req,res,next)=>{
-    res.render("plug_form",{title:"Create Plug",errors: {}})
+    res.render("plug_form",{title:"Create Plug",errors: {},update: false})
 }
 
 // Process request after validation and sanitization
@@ -46,7 +46,7 @@ exports.plug_create_post=[
     body("material","Material must not be empty").trim().isLength({min:1}).escape(),
     body("price","Price must not be empty, must be a number").isFloat(),
     body("size","Size must not be empty, must be a number").isInt(),
-    body("quantity","Quantity must not be a number").isInt(),
+    body("quantity","Quantity  must not be empty, must be a number").isInt(),
     asyncHandler(async(req,res,next)=>{
         const errors = validationResult(req)
         let avail = false
@@ -93,3 +93,59 @@ exports.plug_delete_post = asyncHandler(async(req,res,next)=>{
     await Plug.findByIdAndRemove(req.body.id)
     res.redirect("/catalog/plugs")
 })
+
+// Display Plug update form on GET
+exports.plug_update_get = asyncHandler(async(req,res,next)=>{
+    const plug = await Plug.findById(req.params.id).exec()
+    if(plug === null){
+        // No results
+        const err = new Error("Plug not found")
+        err.status = 404
+        return next(err)
+    }
+    res.render("plug_form",{
+        title: "Update Plug",
+        plug: plug,
+        errors: {},
+        update: true
+    })
+})
+
+
+// Handle Plug update on POST
+exports.plug_update_post = [
+    body("name","Name must not be empty").trim().isLength({min:1}).escape(),
+    body("material","Material must not be empty").trim().isLength({min:1}).escape(),
+    body("price","Price must not be empty, must be a number").isFloat(),
+    body("size","Size must not be empty, must be a number").isInt(),
+    body("quantity","Quantity must not be empty, must be a number").isInt(),
+    asyncHandler(async(req,res,next)=>{
+        const errors = validationResult(req)
+        let avail = false
+        if(req.body.quantity>0){
+            avail = true
+        }
+        const plug = new Plug({
+            name:req.body.name,
+            material:req.body.material,
+            price:req.body.price,
+            size:req.body.size,
+            availability:avail,
+            quantity:req.body.quantity ,
+            _id : req.params.id 
+        })
+        if(!errors.isEmpty()){
+            res.render("plug_form",{
+                title: "Update Plug",
+                plug: plug,
+                errors: errors.array(),
+                update: true
+            })
+            return
+        }else{
+            await Plug.findByIdAndUpdate(req.params.id,plug)
+            res.redirect(plug.url)
+        }
+    })
+]
+
