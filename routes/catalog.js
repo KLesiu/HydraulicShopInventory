@@ -30,6 +30,12 @@ router.get("/chucks/:id/delete",chuck_controller.chuck_delete_get)
 // Post request to delete Chuck
 router.post("/chucks/:id/delete",chuck_controller.chuck_delete_post)
 
+// Get request to update Chuck
+router.get("/chucks/:id/update",chuck_controller.chuck_update_get)
+
+// Post request to update Chuck
+router.post("/chucks/:id/update",chuck_controller.chuck_update_post)
+
 
 // Get request for one Chuck
 router.get("/chucks/:id", chuck_controller.chuck_detail)
